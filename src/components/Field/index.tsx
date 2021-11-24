@@ -1,9 +1,9 @@
 import React from 'react';
 import { GridItem } from './Field.style';
 
-const Field = ({x, y}: { x: number, y: number }) => {
+const Field = (props: any) => {
   return (
-    <GridItem x={x} y={y} />
+    <GridItem {...props}></GridItem>
   );
 };
 

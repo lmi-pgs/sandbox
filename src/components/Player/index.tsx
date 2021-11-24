@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { GridItem } from './Player.style';
 
@@ -35,16 +35,16 @@ const checkCollisions = ({ x, y }: { x: number, y: number}, fields: any) => {
 }
 
 const Player = (props: any) => {
-  const [position, setPosition] = useState({ x: 5, y: 5 }); 
+  const [position, setPosition] = useState({ x: 37, y: 29 }); 
 
-  const changePosition = (event: any) => {
+  const changePosition = useCallback((event: any) => {
     const nextPosition = getNextPosition(event.keyCode, position);
     const hasCollision = checkCollisions(nextPosition, props.fields);
 
     if (!hasCollision) {
       setPosition(nextPosition);
     }
-  }
+  }, [props.fields, position]);
 
   useEffect(() => {
     if (props.fields.length) {
@@ -57,8 +57,6 @@ const Player = (props: any) => {
     <GridItem 
       x={position.x} 
       y={position.y}
-      onKeyDown={changePosition}
-      tabIndex={0}
     />
   );
 };

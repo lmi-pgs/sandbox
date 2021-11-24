@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { fieldsData } from '../data/fields';
 import { loadFieldsData } from '../store/actions';
-import { FlexContainer, GridContainer } from './App.style';
+import { FlexContainer, GridContainer, GameContainer, BackgroundArea, BackgroundAreaB, BackgroundAreaC } from './App.style';
 import Field from './Field';
 import { PlayerContainer } from './Player';
 
@@ -13,12 +13,17 @@ const App = (props: any) => {
 
   return (
     <FlexContainer>
-      <GridContainer>
-        {fieldsData.map((field, index) => (
-          <Field key={`field-${index}`} {...field} />
-        ))}
-        <PlayerContainer />
-      </GridContainer>
+      <GameContainer>
+        <GridContainer>
+          <BackgroundArea />
+          <BackgroundAreaB />
+          <BackgroundAreaC />
+          {fieldsData.map((field, index) => (
+            <Field key={`field-${index}`} {...field} />
+          ))}
+          <PlayerContainer />
+        </GridContainer>
+      </GameContainer>
     </FlexContainer>
   );
 }
